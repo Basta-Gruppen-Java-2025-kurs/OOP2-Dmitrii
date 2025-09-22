@@ -9,7 +9,7 @@ public class SaveLoad {
     private final HashMap<String, Class<? extends Mappable>>classes = new HashMap<>();
     private final HashMap<String, Consumer<String>>actions = new HashMap<>();
 
-    SaveLoad(Scanner sc) {
+    public SaveLoad(Scanner sc) {
         this.sc = sc;
     }
 

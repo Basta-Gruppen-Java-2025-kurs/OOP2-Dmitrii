@@ -2,9 +2,12 @@ package CarGarage;
 
 import Helpers.Menu;
 import Helpers.MenuHelper;
+import Helpers.SaveLoad;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashSet;
+import java.util.Scanner;
 
 public class Garage implements Menu {
     private static Garage instance;
@@ -36,8 +39,12 @@ public class Garage implements Menu {
     public void menu() {
         MenuHelper.menuLoop("Select action:",
                 new String[] {"Exit", "Show status", "Register new car", "Assign a car to a driver", "Start or stop motors", "Service history"},
-                new Runnable[] {this::registerNewCar, this::assignCarToDriver, this::motorsMenu, this::serviceHistory},
+                new Runnable[] {this::showStatus, this::registerNewCar, this::assignCarToDriver, this::motorsMenu, this::serviceHistory},
                 false);
+    }
+
+    private void showStatus() {
+
     }
 
     private void serviceHistory() {
@@ -57,6 +64,18 @@ public class Garage implements Menu {
         File f = new File(SAVE_FILE_NAME);
         if (f.exists()) {
             // load from file
+            try {
+                SaveLoad loader = new SaveLoad(new Scanner(f));
+                loader.registerClass("Engine", Engine.class);
+                loader.registerClass("Car", Engine.class);
+                loader.registerClass("Driver", Engine.class);
+                loader.registerAction("Assign", definition -> {
+
+                });
+                loader.load();
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         } else {
             // initialize default garage
             engines.add(new Engine("ICE35", "Combustion", 35, FuelType.E95));
