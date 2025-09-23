@@ -21,7 +21,7 @@ public class Driver implements Named, Mappable {
     }
 
     public boolean assignCar(Car car, boolean force) {
-        if (car.getAssignedDriver() != null) {
+        if (car != null && car.getAssignedDriver() != null) {
             if (force) {
                 assignedCar.getAssignedDriver().assignedCar = null;
                 car.assignDriver(this);
@@ -33,7 +33,9 @@ public class Driver implements Named, Mappable {
             this.assignedCar.assignDriver(null);
         }
         this.assignedCar = car;
+        if (car != null) {
         car.assignDriver(this);
+        }
         return true;
     }
 

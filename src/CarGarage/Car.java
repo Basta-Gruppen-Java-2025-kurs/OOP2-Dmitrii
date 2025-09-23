@@ -1,21 +1,26 @@
 package CarGarage;
 
 import Helpers.Mappable;
+import Helpers.Menu;
 import Helpers.Named;
 
+import java.util.Date;
 import java.util.Map;
 
-public class Car implements Named, Mappable {
+public class Car implements Named, Mappable, Menu {
 
     private String model;
     private Engine engine;
     private String licensePlate;
     private Driver assignedDriver;
+    private LicenceType licenseRequirement;
     private boolean engineOn;
+    private Date lastService;
+    private Date obtainedDate;
 
     private static final String model_field = "model", engine_field = "engine", licensePlate_field = "licensePlate";
 
-    public Car(String model, Engine engine, String licensePlate) {
+    public Car(String model, Engine engine, String licensePlate, LicenceType licenseRequirement) {
         this.model = model;
         this.engine = engine;
         this.licensePlate = licensePlate;
@@ -32,7 +37,7 @@ public class Car implements Named, Mappable {
 
     @Override
     public String getName() {
-        return licensePlate;
+        return licensePlate + " (" + model + ")";
     }
 
     @Override
@@ -83,5 +88,10 @@ public class Car implements Named, Mappable {
         this.licensePlate = newLicensePlate;
         this.model = newModel;
         return true;
+    }
+
+    @Override
+    public void menu() {
+        System.out.println("Car menu.");
     }
 }

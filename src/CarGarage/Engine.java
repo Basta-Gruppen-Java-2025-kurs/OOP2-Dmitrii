@@ -28,7 +28,7 @@ public class Engine implements Named, Mappable {
 
     @Override
     public String toString() {
-        return name + "( Type: " + type + "; Horse power: " + horsePower + "; Fuel type: " + fuelType + ")";
+        return name + " (Type: " + type + "; Horse power: " + horsePower + "; Fuel type: " + fuelType + ")";
     }
 
     @Override
