@@ -79,7 +79,7 @@ public class Driver implements Named, Mappable {
 
     @Override
     public String toString() {
-        return name + " — license category: " + license + "; " + yearsOfExperience + " years of experience";
+        return name + " — license category: " + license + "; " + yearsOfExperience + " years of experience" + (assignedCar != null ? ". Drives " + assignedCar.getName() : "");
     }
 
     public LicenceType getLicense() {

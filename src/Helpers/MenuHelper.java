@@ -42,4 +42,10 @@ public class MenuHelper {
         menuLoop(header, options, callbacks, singleShot);
     }
 
+    public static boolean yesNoQuestion(String question) {
+        System.out.println(question + " (y/N)");
+        Scanner sc = new Scanner(System.in);
+        String response = sc.nextLine();
+        return response.trim().toLowerCase().charAt(0) == 'y';
+    }
 }

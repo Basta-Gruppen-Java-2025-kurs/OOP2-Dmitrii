@@ -11,6 +11,7 @@ public class Car implements Named, Mappable {
     private Engine engine;
     private String licensePlate;
     private Driver assignedDriver;
+    private boolean engineOn;
 
     private static final String model_field = "model", engine_field = "engine", licensePlate_field = "licensePlate";
 
@@ -18,6 +19,7 @@ public class Car implements Named, Mappable {
         this.model = model;
         this.engine = engine;
         this.licensePlate = licensePlate;
+        this.engineOn = false;
     }
 
     public void assignDriver(Driver driver) {
@@ -31,6 +33,27 @@ public class Car implements Named, Mappable {
     @Override
     public String getName() {
         return licensePlate;
+    }
+
+    @Override
+    public String toString() {
+        return this.model + ", engine: " + this.engine + " (" + (this.engineOn ? "on" : "off") + " license plate: " + this.licensePlate + "." + (this.assignedDriver == null ? "" : " Driver: " + this.assignedDriver.getName());
+    }
+
+    public void turnOn() {
+        engineOn = true;
+    }
+
+    public void turnOff() {
+        engineOn = false;
+    }
+
+    public boolean isOn() {
+        return engineOn;
+    }
+
+    public Engine getEngine() {
+        return engine;
     }
 
     @Override
